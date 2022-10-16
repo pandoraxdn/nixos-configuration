@@ -1,0 +1,20 @@
+#Install
+  apt install git
+  pacman -S git
+  eopkg it git
+  dnf install git
+  nix-env -iA nixos.git || nix-env -iA nixpkgs.git 
+
+  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+#Fix python tabnine install:
+  python3 -m pip install --user --upgrade pynvim
+
+#PlugInstall
+  :PlugInstall
+
+#Coc
+  :CocInstall coc-clangd coc-deno coc-emmet coc-flutter coc-go coc-json coc-phpls coc-pyright coc-tabnine coc-tsserver coc-pairs
+
+# Fix
+Fix coc-tabnine command set :verbose imap
