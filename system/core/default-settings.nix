@@ -6,7 +6,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  #boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   # Set your time zone.
   time.timeZone = "America/Mexico_City";

@@ -1,0 +1,52 @@
+Partition Table
+
+# Number partition  # Size  # Location  # Type          # Number of type
+Partition 1	        +256M	/dev/sda1 	EFI System 	    1
+Partition 2	        +16G	/dev/sda2 	Swap		    19
+Partition 3	        +449.5G	/dev/sda3	Linux Ssystem	Default
+
+fdisk /dev/sda
+
+# Format and mount partition
+mkfs.btrfs -L nixos /dev/sda3
+mkswap -L swap /dev/sda2
+mkfs.fat -F 32 -n boot /dev/sda1
+
+mount /dev/sda3 /mnt
+mkdir -p /mnt/boot
+mount /dev/sda1 /mnt/boot
+swapon /dev/sda2
+
+# Install system
+nixos-generate-config --root /mnt
+
+nixos-install
+
+# Add user on configuration.nix
+users.users.najimi = {
+    isNormalUser = true;
+    description = "Rodrigo Xdn";
+    initialPassword = "pass";
+    group = "users";
+    extraGroups = [ "wheel" "disk" "audio" "video" "networkmanager" "systemd-journal" ];
+    shell = pkgs.zsh;
+};
+
+# Enable flake's
+sudo nix-channel --add https://channels.nixos.org/nixpkgs-unstable/ unstable
+sudo nix-channel --update
+
+# Enable Nix Flakes on configuration.nix
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
+sudo nixos-rebuild switch
+
+# Install home-manager
+sudo nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+sudo nix-channel --update
+
+# Build flake
+sudo nixos-rebuild switch --flake .#najimi
+
+#Update home-manager config
+nix build --no-link .#homeConfigurations.najimi.activationPackage
+home-manager switch --flake .#najimi

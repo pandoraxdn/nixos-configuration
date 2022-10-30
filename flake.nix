@@ -3,30 +3,55 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
-    nixosConfigurations = {
-      default = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+  outputs = { nixpkgs, home-manager, ... }:
+
+    let
+      xdnUser = "najimi"; 
+      xdnHome = "/home/najimi";
+      xdnVersion= "22.05";
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+
+    in {
+      homeConfigurations.${xdnUser} = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
         modules = [
-          ./system/layout/configuration.nix
-        ];
-      };
-      najimi = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./system/core/configuration.nix
-          home-manager.nixosModules.home-manager
+          ./home-manager/home.nix
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.najimi = import ./home-manager/home.nix;
+            home = {
+              username = "${xdnUser}";
+              homeDirectory = "${xdnHome}";
+              stateVersion = "${xdnVersion}";
+            };
           }
         ];
       };
+      nixosConfigurations = {
+        default = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./system/layout/configuration.nix
+          ];
+        };
+        ${xdnUser} = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./system/core/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${xdnUser} = import ./home-manager/home.nix;
+            }
+          ];
+        };
+      };
     };
-  };
+
 }
