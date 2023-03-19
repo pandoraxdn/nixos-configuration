@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    #hyprland.url = "github:hyprwm/Hyprland";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -10,14 +11,12 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }:
-
     let
       xdnUser = "najimi"; 
       xdnHome = "/home/najimi";
-      xdnVersion= "22.05";
+      xdnVersion= "23.05";
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-
     in {
       homeConfigurations.${xdnUser} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
@@ -53,5 +52,4 @@
         };
       };
     };
-
 }

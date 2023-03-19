@@ -26,7 +26,7 @@
     zip
   ];
 
-  # Fonts
+  # Fonts system
   fonts.fonts = with pkgs; [
     meslo-lg
   ];

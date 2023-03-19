@@ -8,23 +8,24 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/1d1f7b4e-96dc-49ae-b7ae-5ee1ddf35266";
+    { device = "/dev/disk/by-uuid/85e815ed-7f08-4fae-9a26-ff9d8bc96d7a";
       fsType = "btrfs";
+      options = [ "subvol=@" ];
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/0A54-1A83";
+  fileSystems."/boot/efi" =
+    { device = "/dev/disk/by-uuid/0B03-F5AC";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/f93db375-4363-4bcb-abaa-ba548ae8fbe7"; }
+    [ { device = "/dev/disk/by-uuid/7f1234ee-2ce7-4c2f-9a2a-857b5e3bd440"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -34,5 +35,6 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

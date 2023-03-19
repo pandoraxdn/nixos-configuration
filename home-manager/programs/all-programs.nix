@@ -4,6 +4,9 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    filezilla
+    onlyoffice-bin
+    cider
     helix
     lapce
     go
@@ -24,28 +27,14 @@
     #zoom-us
     flameshot
     jp2a
-    cava
-    code-minimap
-    glava
     lolcat
     ncmpcpp
-    picom
-    rofi
     sakura
     volumeicon
-    polybar
-    brightnessctl
-    lxappearance
     dmenu
     udiskie
     leafpad
-    pcmanfm
-    feh
     unrar
-    sxiv
-    betterlockscreen
-    conky
-    pywal
     rnix-lsp
     w3m
     imagemagick

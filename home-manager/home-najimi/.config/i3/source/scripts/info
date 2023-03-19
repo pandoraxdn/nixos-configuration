@@ -1,0 +1,124 @@
+conky.config = {
+
+	background = true, 							
+	cpu_avg_samples = 2,						
+	diskio_avg_samples = 10,					
+	double_buffer = true,						
+	if_up_strictness = 'address',				
+	net_avg_samples = 2,						
+	no_buffers = true,							
+	temperature_unit = 'celsius',				
+	text_buffer_size = 2048,					
+	update_interval = 1,						
+	imlib_cache_size = 0,                      
+
+
+	alignment = 'middle_left',					
+	gap_x = 10,									
+	gap_y = 10,									
+	minimum_height = 200,						
+	minimum_width = 280,					
+	maximum_width = 280,						
+
+
+	border_inner_margin = 9, 					
+	border_outer_margin = 9, 					
+	border_width = 0, 							
+	default_bar_width = 280,					
+	default_bar_height = 10,					
+	default_gauge_height = 25,				
+	default_gauge_width =40,					
+	default_graph_height = 40,					
+	default_graph_width = 153,					
+	default_shade_color = '#000000',			
+	default_outline_color = '#000000',			
+	draw_borders = false,					
+	draw_graph_borders = true,					
+	draw_shades = false,					
+	draw_outline = false,						
+	stippled_borders = 0,					
+
+
+	extra_newline = false,						
+	format_human_readable = true,				
+	font = 'Noto Mono:size=11:regular',  			
+	max_text_width = 0,							
+	max_user_text = 16384,						
+	override_utf8_locale = true,				
+	short_units = true,							
+	top_name_width = 21,						
+	top_name_verbose = false,					
+	uppercase = false,							
+	use_spacer = 'none',					
+	use_xft = true,								
+	xftalpha = 1,								
+
+	own_window = true,						
+	own_window_argb_value = 150,				    
+	own_window_argb_visual = true,				
+	own_window_class = 'Conky',					
+	own_window_colour = '#000000',				
+	own_window_hints = 'undecorated,below,above,sticky,skip_taskbar,skip_pager',  
+	own_window_transparent = false,				
+	own_window_title = 'system_conky',			
+	own_window_type = 'override',				    
+
+
+	default_color = '#ff0000',  				
+	color1 = '#FFFFFF',
+	color2 = '#8F93D9',
+	color3 = '#CCCCCC',
+	color4 = '#BDBDBD',
+	color5 = '#CCCCCC',
+	color6 = '#aa0000',
+
+	color7 = '#1F7411',  						
+	color8 = '#FFA726',  						
+	color9 = '#F1544B',  						
+
+
+
+
+};
+
+conky.text = [[
+${image ~/Imágenes/icon/logo.png -s 60x60 -f 8640}
+${color1}${alignc}S Y S T E M    I N F O${color}
+${color1}${color}
+${color1}${hr}${color}
+${color1}Host:${alignr}${color2}${nodename}${color}
+${color1}Kernel:${color2}${alignr}$kernel${color}
+${color1}Uptime:${color2}${alignr}${uptime}${color}
+${color1}America/Mexico_City:${color2}${alignr}${time %H:%M}${color}
+${color1}UTC:${color2}${alignr}${utime %H:%M}${color}
+
+${color1}${goto 60}Used${alignr}Size${color}
+${color1}Root${goto 60}${color2}${fs_used /}${alignr}${fs_size /}${color}
+${color1}Home ${goto 60}${color2}${fs_used /home}${alignr}${fs_size /home}${color}
+
+${color1}${goto 60}Mem${alignr}Max${color}
+${color1}RAM${goto 60}${color2}${mem}${alignr}${memmax}${color}
+${color1}Swap${goto 60}${color2}${swap}${alignr}${swapmax}${color}
+
+${color1}CPU:${goto 60}Used${alignr}GHz${color}
+${color1}Avg${goto 60}${color2}${if_match ${cpu cpu0}<50}  ${cpu cpu0}\
+${else}${if_match ${cpu cpu0}<=100}${color9} ${cpu cpu0}\
+${else}${cpu cpu0}${endif}${endif}%${alignr}${freq_g}${color}
+
+${color1}${alignc}S H O R T C U T    K E Y S${color}
+${color1}${hr}${color}
+${color1}[S]+[Shift]+D${alignr}${color2}Rofi Menu${color}
+${color1}[S]+D${alignr}${color2}Dmenu${color}
+${color1}[S]+B${alignr}${color2}Menu Workspaces${color}
+${color1}${hr}${color}
+${color1}[S]+Enter${alignr}${color2}Terminal${color}
+${color1}[S]+[Shift]+Enter${alignr}${color2}File Manager${color}
+${color1}[PrtSc]${alignr}${color2}Screenshot${color}
+${color1}[S]+[Shift]+R${alignr}${color2}Restart${color}
+${color1}${hr}${color}
+${color1}[S]+[Shift]+Q${alignr}${color2}Stop application${color}
+${color1}[S]+x${alignr}${color2}Exit${color}
+${color1}${hr}${color}
+${color1}NixOs versión${color}
+${color2}${execi 6000 nixos-version }${color}
+]];

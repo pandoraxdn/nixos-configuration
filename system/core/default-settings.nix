@@ -3,10 +3,23 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Bootloader.
+  nix.settings.trusted-users = [ "root" "najimi" ];
+
+  # Lasted kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Lasted kernel zen
+  #boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  # Bootloader EFI
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  #boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
+  # Bootloader LEGACY
+  #boot.loader.grub.enable = true;
+  #boot.loader.grub.device = "/dev/sda";
+  #boot.loader.grub.useOSProber = true;
 
   # Set your time zone.
   time.timeZone = "America/Mexico_City";
@@ -22,5 +35,5 @@
   console.keyMap = "es";
 
   # State Veersion
-  system.stateVersion = "22.05";
+  system.stateVersion = "23.05";
 }

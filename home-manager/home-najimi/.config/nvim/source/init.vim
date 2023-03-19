@@ -175,7 +175,7 @@ Plug 'arcticicestudio/nord-vim'
 
 Plug '4513ECHO/vim-colors-hatsunemiku'
 
-Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+#Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
 Plug 'nvim-lua/plenary.nvim'
 

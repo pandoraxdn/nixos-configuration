@@ -3,12 +3,10 @@
 {
   networking.hostName = "dead-master";
 
-  /*
   networking.extraHosts =
   ''
-        127.0.0.2 license.sublimehq.com
-        '';
-  */
+        127.0.0.2 pandoraxdn.com
+  '';
 
   # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
@@ -18,4 +16,10 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  # Open ports in the firewall.
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  networking.firewall.enable = true;
 }

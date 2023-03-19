@@ -7,7 +7,7 @@
     description = "Rodrigo Xdn";
     initialPassword = "pass";
     group = "users";
-    extraGroups = [ "wheel" "disk" "audio" "video" "networkmanager" "systemd-journal" ];
+    extraGroups = [ "wheel" "disk" "audio" "video" "networkmanager" "systemd-journal" "vboxusers" ];
     shell = pkgs.zsh;
   };
 }

@@ -34,6 +34,7 @@ users.users.najimi = {
 
 # Enable flake's
 sudo nix-channel --add https://channels.nixos.org/nixpkgs-unstable/ unstable
+nix-channel --add https://nixos.org/channels/nixos-unstable nixos
 sudo nix-channel --update
 
 # Enable Nix Flakes on configuration.nix
