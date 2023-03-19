@@ -120,7 +120,7 @@ alias edit-nix="nvim ~/Flake/system/core/configuration.nix"
 
 alias edit-nvim="nvim ~/Flake/home-manager/home-najimi/.config/nvim/source/init.vim"
 
-alias git-token="echo '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'"
+alias git-token="echo 'pass'"
 
 alias monitor1="xrandr --auto --output VGA-1 --mode 1440x900"
 
