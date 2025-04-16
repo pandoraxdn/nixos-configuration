@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = [ pkgs.waybar ];
+  home.packages = [ 
+    pkgs.waybar
+  ];
 
   programs.waybar = {
       enable = true;
@@ -25,11 +27,27 @@
           opacity: 0.2;
         }
         #workspaces button {
-          background: #1f1f1f;
           color: #ffffff;
-          border-radius: 20px;
+        }
+        #workspaces button.urgent {
+          background-color: #581845;
         }
         #workspaces button:hover {
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
+          opacity: 0.5;
+          border-radius: 30px;
+        }
+        /*
+        #workspaces button:hover {
+          background: lightblue;
+          color: black;
+          border-bottom: 3px solid #ffffff;
+        }
+        #workspaces button.active {
+          background: #1f1f1f;
+        }
+        #workspaces button.active:hover {
           background: lightblue;
           color: black;
           border-bottom: 3px solid #ffffff;
@@ -42,9 +60,7 @@
           color: black;
           border-bottom: 3px solid #ffffff;
         }
-        #workspaces button.urgent {
-          background-color: #eb4d4b;
-        }
+        */
         #mode {
           background-color: #64727D;
           border-bottom: 3px solid #ffffff;
@@ -86,14 +102,21 @@
         }
         #clock {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%); 
+          color: black;
+          background-color: rgb(36,35,51);
+          color: #ffffff;
+        }
+        #screenshot {
+          border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%); 
           color: black;
           background-color: rgb(36,35,51);
           color: #ffffff;
         }
         #window{
           border-radius: 30px;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
           color: black;
           background-color: rgb(36,35,51);
           color: #ffffff;
@@ -126,20 +149,20 @@
         }
         #cpu {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           color: #ffffff;
         }
         #memory {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           color: #ffffff;
         }
         #disk {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           color: #ffffff;
         }
         #backlight {
@@ -147,32 +170,32 @@
         }
         #network {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           color: #ffffff;
         }
         #network.disconnected {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           color: red;
         }
         #pulseaudio {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           color: #ffffff;
         }
         #pulseaudio.muted {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           color: red;
         }
         #custom-media {
           background-color: #8EC5FC;
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
           color: black;
           margin-right: 5px;
           margin-left: 5px;
@@ -191,99 +214,106 @@
           border-radius: 20px;
           margin-right: 5px;
         }
+        #workspaces{
+          border-radius: 30px;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
+          font-size: 20px;
+          margin-left: 5px;
+        }
         #custom-power{
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           font-size: 18px;
           margin-right: 5px;
         }
         #custom-launcher{
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           font-size: 20px;
           margin-left: 5px;
         }
         #disk{
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           font-size: 20px;
           margin-left: 5px;
         }
         #submap{
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           font-size: 20px;
           margin-left: 5px;
         }
         #custom-layout{
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           color: white;
           font-size:20px;
         }
         #custom-updater {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           color: white;
         }
         #custom-snip {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           color: skyblue;
           font-size: 20px;
         }
         #taskbar{
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
         }
         #temperature {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           color: #ffffff;
         }
         #temperature.critical {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
           background-color: #eb4d4b;
         }
         #tray {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           color: #ffffff;
         }
         #tray > .passive {
           -gtk-icon-effect: dim;
-          background-color: #171717;
+          background-color: rgb(38,16,32);
           color: #ffffff;
         }
         #tray > .needs-attention {
           -gtk-icon-effect: highlight;
-          background-color: #171717;
+          background-color: rgb(38,16,32);
           color: #ffffff;
         }
         #idle_inhibitor {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
         }
         #idle_inhibitor.activated {
           border-radius: 45% 55% 50% 50% / 0% 100% 0% 100% ;
-          background-image: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
-          background-color: #171717;
+          background-image: linear-gradient(355deg, rgba(38,16,32,1) 0%, rgba(89,8,46,1) 77%);
+          background-color: rgb(38,16,32);
           color: #ffffff;
         }
         #language {
-          background-color: #171717;
+          background-color: rgb(38,16,32);
           color: #ffffff;
           min-width: 16px;
         }
@@ -305,18 +335,37 @@
           "position" = "top";
           "gtk-layer-shell" = true;
           "modules-center" = [
-            "hyprland/window"
-            "hyprland/submap"
-            "wlr/workspaces"
+            "hyprland/workspaces"
           ];
           "modules-left" = [
             "custom/launcher"
+            "hyprland/window"
+            "hyprland/submap"
           ];
           "modules-right" = [
+            "screenshot"
             "clock"
             "temperature"
             "custom/power"
           ];
+          "hyprland/workspaces" = {
+            "format" = "{icon} : {id}";
+            "format-icons" = {
+              "1" = "I";
+              "2" = "II";
+              "3" = "III";
+              "4" = "IV";
+              "5" = "V";
+              "6" = "VI";
+              "7" = "VII";
+              "8" = "VIII";
+              "9" = "IX";
+              "10" = "X";
+              "urgent" = "";
+              "active" = "";
+              "default" = "";
+            };
+          };
           "clock" = {
             "align" = 0;
             "format" = "{:%d %b <span rise='1000'>⁙</span> %I:%M %p}";
@@ -330,19 +379,25 @@
             "on-click" = "bash ~/.config/hypr/wofi/launcher/launcher.sh";
             "tooltip" = false;
           };
+          "screenshot" = {
+            "format" = "<span font='13' rise='1000'> </span>";
+            "on-click" = "bash grim $HOME/$(date +'%_captura.png')";
+            "tooltip" = false;
+          };
           "custom/power" = {
             "format" = "<span font='13' rise='1000'>⏻</span>";
             "on-click" = "nwg-bar";
             "on-click-right" = "killall nwg-bar";
           };
           "hyprland/submap" = {
-            "format" = " {}";
-            "max-length" = 8;
+            "format" = "<span font='10'> {}</span>";
+            "max-length" = 10;
             "tooltip" = false;
           };
           "hyprland/window" = {
-            "format" = "<span rise='1000'>⁙</span> {} <span rise='1000'>⁙</span>";
+            "format" = "<span font='10' rise='1000'>⁙</span> {} <span rise='1000'>⁙</span>";
             "separate-outputs" = true;
+            "max-length" = 40;
           };
           "temperature" = {
             "critical-threshold" = 80;
@@ -352,14 +407,6 @@
               ""
               ""
             ];
-          };
-          "wlr/workspaces" = {
-            "all-outputs" = true;
-            "format" = "{}";
-            "on-click" = "activate";
-            "on-scroll-down" = "hyprctl dispatch workspace e-1";
-            "on-scroll-up" = "hyprctl dispatch workspace e+1";
-            "sort-by-number" = true;
           };
         }
         {
@@ -394,8 +441,8 @@
             "interval" = 2;
           };
           "disk" = {
-            "format" = "<span font='11'></span> {percentage_used}%";
-            "format-alt" = "<span font='11'></span> {free}";
+            "format" = "<span font='10'> {used}/{percentage_used}%</span>";
+            "format-alt" = "<span font='10'> {free}/{percentage_free}%</span>";
             "interval" = 30;
             "path" = "/";
             "tooltip" = false;

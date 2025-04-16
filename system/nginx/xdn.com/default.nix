@@ -1,8 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  services.nginx.virtualHosts."pandoraxdn.com" = {
-    root = "/var/www/pandoraxdn.com";
+  services.nginx.virtualHosts."xdn.com" = {
+    default = true;
+    root = "/home/najimi/nginx";
     locations."~ \.php$".extraConfig = ''
       fastcgi_pass  unix:${config.services.phpfpm.pools.mypool.socket};
       fastcgi_index index.php;

@@ -4,40 +4,71 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    filezilla
-    onlyoffice-bin
-    cider
-    helix
-    lapce
-    go
-    python310
-    php
-    php80Packages.composer
-    nodejs-18_x
-    opera
-    thunderbird
-    google-chrome
-    vlc
-    #netbeans
+    #amberol
+    #etcher
+    #google-chrome-dev
     #jdk
-    beekeeper-studio
-    dbeaver
+    #microsoft-edge
+    #netbeans
+    #thunderbird
     #youtube-dl
-    ffmpeg
     #zoom-us
-    flameshot
-    jp2a
-    lolcat
-    ncmpcpp
-    sakura
-    volumeicon
+    arandr
+    beekeeper-studio
+    #cider
+    #code-minimap
+    conky
+    devenv
+    dbeaver-bin
+    #discord
     dmenu
-    udiskie
-    leafpad
-    unrar
-    rnix-lsp
-    w3m
+    docker-compose
+    exfat
+    ffmpeg
+    firefox-unwrapped
+    filezilla
+    flameshot
+    focuswriter
+    glava
+    go
+    google-chrome
+    guake
+    helix
     imagemagick
+    insomnia
+    jp2a
+    krita
+    lapce
+    libreoffice
+    lolcat
+    #mongodb-compass
+    #netbeans
+    ncmpcpp
+    nodejs_22
+    notable
+    oneko
+    opera
+    php83
+    php83Packages.composer
+    python3
+    pywal
+    #rnix-lsp
+    sakura
+    scrcpy
+    scrot
+    simple-mtpfs
+    simplescreenrecorder
+    tilix
+    udiskie
+    unrar
+    #vivaldi
+    vlc
+    volumeicon
+    w3m
+    wine
+    #wpsoffice
+    xfce.mousepad # -> leafpad
+    xorg.xrandr
   ];
 
 }

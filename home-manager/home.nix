@@ -1,18 +1,22 @@
-{ config, pkgs, ... }:
+{ config, pkgs, xdnUser, xdnHome, xdnVersion, ... }:
 
 {
 
-  home.username = "najimi";
-  home.homeDirectory = "/home/najimi";
+  home.username                 = "${xdnUser}"; 
+  home.homeDirectory            = "${xdnHome}";
+  nixpkgs.config.allowUnfree    = true;
+  home.stateVersion             = "${xdnVersion}";
+  programs.home-manager.enable  = true;
 
   #home-manager.users."najimi".home.file.".config/nixpkgs/config.nix".source = ./nixpkgs-config.nix;
 
   imports = [ 
     ./programs/cava
-    ./programs/element
+    #./programs/element
     ./programs/neofetch
     ./programs/waybar
     ./programs/all-programs.nix
+    #./programs/dde-programs.nix
     #./programs/hyprland-programs.nix
     ./programs/i3-programs.nix
     ./home-najimi/.config/hypr
@@ -24,10 +28,8 @@
     ./home-najimi/.config/user.dir
   ];
 
-  # Realese home-manager version
-  home.stateVersion = "23.05";
-  
-  # Enable programs of home-manager
-  programs.home-manager.enable = true;
+  home.packages = with pkgs; [
+    sakura
+  ];
 
 }

@@ -34,6 +34,8 @@ set smartcase
 
 set noshowmode
 
+set mouse-=a
+
 setlocal nobuflisted
 
 xnoremap K :move '<-2<CR>gv-gv
@@ -77,6 +79,13 @@ command T execute "split term://zsh"
 
 command Exit execute "w | qa"
 
+command Xdn execute "echo 'Lh=html Ldh=DjangoHtml Lds=DjangoSection Lbh=LaravelHtml Lbs=LaravelSection Ldevenv=NixDevenv Lnix=NixLayout Lgo=GoLayout Lrc=ReactComp'"
+
+" Functions
+function! ChangeValue( ... )
+    execute printf('%%substitute/%s/%s/g', a:1, a:2)
+endfunction
+
 " Layouts
 
 " HTML
@@ -100,10 +109,27 @@ command Lnix execute "-1read $HOME/.config/nvim/.layouts/.layout_shell.nix"
 " Go main layout
 command Lgo execute "-1read $HOME/.config/nvim/.layouts/.layout_goland_main.go"
 
+" Nix Devenv layout
+command Ldevenv execute "-1read $HOME/.config/nvim/.layouts/.layout_devenv.nix"
+
+" React layout Component
+command Lrc execute "-1read $HOME/.config/nvim/.layouts/.layout_react_ts.tsx"
+
+" React Native layout Component
+command Lrn execute "-1read $HOME/.config/nvim/.layouts/.layout_react_native.tsx"
+
+" BashScript layout 
+command Lbash execute "-1read $HOME/.config/nvim/.layouts/.layout_bash_script.sh"
+
 " Close others buffers
 command! Cb execute '%bdelete|edit #|normal `"'
 
+" Change Values
+command! -nargs=+ Cvalue call ChangeValue(<f-args>)
+
 call plug#begin('~/.local/share/nvim/plugged')
+
+Plug 'ayu-theme/ayu-vim'
 
 Plug 'ryanoasis/vim-devicons'
 
@@ -129,7 +155,31 @@ Plug 'cocopon/iceberg.vim'
 
 Plug 'gkeep/iceberg-dark'
 
-Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+
+Plug 'folke/tokyonight.nvim'
+
+Plug 'bluz71/vim-nightfly-colors'
+
+Plug 'rebelot/kanagawa.nvim'
+
+Plug 'NLKNguyen/papercolor-theme'
+
+Plug 'ellisonleao/gruvbox.nvim'
+
+Plug 'Mofiqul/dracula.nvim'
+
+Plug 'joshdick/onedark.vim'
+
+Plug 'baliestri/aura-theme'
+
+Plug 'rose-pine/neovim'
+
+Plug 'AlexvZyl/nordic.nvim', { 'branch': 'main' }
+
+Plug 'EdenEast/nightfox.nvim'
+
+Plug 'doki-theme/doki-theme-vim'
 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -175,7 +225,7 @@ Plug 'arcticicestudio/nord-vim'
 
 Plug '4513ECHO/vim-colors-hatsunemiku'
 
-#Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+"Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
 Plug 'nvim-lua/plenary.nvim'
 
@@ -236,9 +286,9 @@ nmap <Leader>s <Plug>(easymotion-s2)
 
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.jsx, *.js'
 
-colorscheme hatsunemiku
+colorscheme catppuccin-mocha
 
-let g:airline_theme = 'hatsunemiku'
+let g:airline_theme = 'catppuccin'
 
 let g:minimap_width = 10
 
@@ -252,16 +302,16 @@ let g:minimap_close_filetypes =	['startify', 'netrw', 'vim-plug']
 
 let g:minimap_enable_highlight_colorgroup	= 1
 
-let g:javascript_plugin_jsdoc = 1
+"let g:javascript_plugin_jsdoc = 1
 
-let g:javascript_plugin_ngdoc = 1
+"let g:javascript_plugin_ngdoc = 1
 
-let g:javascript_plugin_flow = 1
+"let g:javascript_plugin_flow = 1
 
-augroup javascript_folding
-    au!
-    au FileType javascript setlocal foldmethod=syntax
-augroup END
+"augroup javascript_folding
+    "au!
+    "au FileType javascript setlocal foldmethod=syntax
+"augroup END
 
 "let g:javascript_conceal_function = "ƒ"
 

@@ -1,10 +1,22 @@
-{ config, pkgs, ... }:
+{ config, pkgs, xdnUser, xdnVersion, xdnHost, xdnHome, ... }:
 
 {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   services.xserver.videoDrivers = ["modesetting"];
+
+  # Disable typing touchpad
+  services.libinput.enable = true;
+  services.libinput.touchpad.tapping = true; # false
+  services.libinput.touchpad.disableWhileTyping = false; # true
+  services.libinput.touchpad.clickMethod = "clickfinger";
+
+  # Old versions comment
+  #services.xserver.libinput.enable = true;
+  #services.xserver.libinput.touchpad.tapping = true; # false
+  #services.xserver.libinput.touchpad.disableWhileTyping = false; # true
+  #services.xserver.libinput.touchpad.clickMethod = "clickfinger";
 
   # GNOME Desktop
   #services.xserver.displayManager.gdm.enable = true;
@@ -22,7 +34,19 @@
   #services.xserver.displayManager.defaultSession = "xfce";
   
   # Kde Desktop
+  #services.xserver.displayManager.sddm.enable = true;
   #services.xserver.desktopManager.plasma5.enable = true;
+
+  # Deepin
+  #services.xserver.displayManager.sddm.enable = true;
+  #services.xserver.desktopManager.deepin.enable = true;
+  #services.deepin.dde-daemon.enable = true;
+  #services.deepin.dde-api.enable = true;
+  #services.deepin.app-services.enable = true;
+
+  # Budgie
+  #services.xserver.desktopManager.budgie.enable = true;
+  #services.xserver.desktopManager.budgie.extraPlugins = [ pkgs.budgiePlugins.budgie-analogue-clock-applet ];
 
   # Awesome Desktop
   /*
@@ -57,26 +81,39 @@
   };
   */
 
-  # I3
-  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
+  # i3
+  environment.pathsToLink = [ "/libexec" ];
+  services.displayManager.defaultSession = "none+i3";
   services.xserver = {
     desktopManager = {
       xterm.enable = false;
     };
     displayManager = {
-        defaultSession = "none+i3";
-        lightdm.enable = true;
+      #defaultSession = "none+i3";
+      lightdm.enable = true;
+      lightdm.greeters.gtk.enable = true;
     };
     windowManager.i3 = {
-      package = pkgs.i3-gaps;
       enable = true;
       extraPackages = with pkgs; [
         dmenu
-        i3status
-        i3lock
         i3blocks
-	    kitty
+        i3lock
+        i3status
+        kitty
      ];
     };
   };
+
+  /*
+  programs.hyprland = {
+    enable = true;
+    xwayland = {
+      enable = true;
+      hidpi = false;
+    };
+    nvidiaPatches = false;
+  };
+  services.xserver.displayManager.gdm.enable = true;
+  */
 }

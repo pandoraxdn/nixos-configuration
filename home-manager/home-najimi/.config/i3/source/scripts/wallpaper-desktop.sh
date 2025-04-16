@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 #!/bin/bash
 
-wallpaper="$HOME/Imágenes/wallpaper/akiyama-mizuki-in-hatsune-miku-colorful-stage-kh.jpg"
+#wallpaper="$HOME/Imágenes/wallpaper/104359432_p0.jpg"
+wallpaper="$HOME/Imágenes/wallpaper/974034.jpg"
 
 
 case $1 in

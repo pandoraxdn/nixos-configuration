@@ -16,6 +16,7 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font Menlo-Regular 8
+font MesloLGSDZ-BoldItalic 8
 
 # Gaps configuration
 for_window [class=".*"] border pixel 3
@@ -26,7 +27,7 @@ gaps outer -4
 #exec --no-startup-id setxkbmap es
 
 # Set leds of keyboard
-exec_always xset led off && xset led 3
+#exec_always xset led off && xset led 3
 
 # Picom Configuration
 exec --no-startup-id picom -b --config  $HOME/.config/i3/configuration/picom.conf
@@ -44,7 +45,7 @@ exec --no-startup-id conky -c ~/.config/i3/scripts/info
 exec --no-startup-id flameshot
 
 # Glava start
-#exec --no-startup-id glava --desktop &
+#exec --no-startup-id glava -d &
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -82,9 +83,15 @@ floating_modifier $mod
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec sakura
 
+# Drop terminal
+bindsym $mod+Shift+t exec guake
+
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym $mod+q kill
+
+# Captura de Pantalla
+bindsym $mod+Shift+p exec --no-startup-id scrot -u '/home/najimi/Imágenes/screenshot-%Y%m%d-%H%M%S.png'
 
 # Add nitrogen to start i3
 #exec nitrogen --restore
@@ -97,9 +104,9 @@ bindsym $mod+Shift+Return exec pcmanfm
 
 # start dmenu (a program launcher)
 #bindsym $mod+Shift+d exec --no-startup-id dmenu_run
-bindsym $mod+shift+d exec --no-startup-id dmenu_run -i -nb '#181b28' -nf '#8F93D9' -sb '#c54fc2' -sf '#8F93D9' -fn 'NotoMonoRegular:bold:pixelsize=15'
-bindsym $mod+d exec --no-startup-id rofi -show drun -font "Noto Sans 10" -theme ~/.config/i3/polybar/cuts/scripts/rofi/rounded-purple.rasi
-bindsym $mod+b exec --no-startup-id rofi -show window -font "Noto Sans 10" -theme ~/.config/i3/polybar/cuts/scripts/rofi/rounded-purple.rasi
+bindsym $mod+shift+d exec --no-startup-id dmenu_run -i -nb '#132640' -nf '#BF6FB2' -sb '#BF6FB2' -sf '#132640' -fn 'NotoMonoRegular:bold:pixelsize=15'
+bindsym $mod+d exec --no-startup-id rofi -show drun -font "Noto Sans 10" -theme ~/.config/i3/polybar/cuts/scripts/rofi/rounded-blue.rasi
+bindsym $mod+b exec --no-startup-id rofi -show window -font "Noto Sans 10" -theme ~/.config/i3/polybar/cuts/scripts/rofi/rounded-blue.rasi
 
 # start rofi
 #bindsym $mod+F9 exec --no-startup-id rofi -show drun -fullscreen -font "Noto Sans 13"
@@ -294,7 +301,7 @@ bar {
             #statusline #FFFFFF
 
             # colorclass          border        backgr.     text
-            #focused_workspace     #0000005F     #7a52c0     #FFFFFF
+            #focused_workspace     #0000005F     #BF6FB2     #FFFFFF
             #active_workspace      #0000005F     #0000005F   #000000
             #inactive_workspace    #0000005F     #0000005F   #000000
             #urgent_workspace      #0000005F     #0000005F   #000000
@@ -303,17 +310,17 @@ bar {
 
 #}
 
-#Theme name : Pandora Xdn red
+#Theme name : Pandora Xdn
 
 # Window color settings
 # class                 border  backgr. text    indicator
-client.focused          #716D6D #8F93D9 #FFFFFF #8F93D9
-client.unfocused        #716D6D #636A73 #FFFFFF #636A73
-client.focused_inactive #716D6D #C6DFDF #FFFFFF #C6DFDF
-client.placeholder      #716D6D #b5a7d3 #FFFFFF #b5a7d3
-client.urgent           #716D6D #e5a8f4 #FFFFFF #e5a8f4
+client.focused          #716D6D #592D39 #FFFFFF #592D39
+client.unfocused        #716D6D #F2D0A7 #FFFFFF #F2D0A7
+client.focused_inactive #716D6D #BF6FB2 #FFFFFF #BF6FB2
+client.placeholder      #716D6D #F2D0A7 #FFFFFF #F2D0A7
+client.urgent           #716D6D #A66D6D #FFFFFF #A66D6D
 
-client.background       #3b3259
+client.background       #211C40
 
 #Press windows + x - check toolbar for next choices
 bindsym $mod+X mode "$mode_system"

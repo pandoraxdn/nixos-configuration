@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, xdnUser, xdnVersion, xdnHost, xdnHome, ... }:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  nix.settings.trusted-users = [ "root" "najimi" ];
+  nix.settings.trusted-users = [ "root" "${xdnUser}" ];
 
   # Lasted kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -14,7 +14,9 @@
   # Bootloader EFI
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.kernelModules = [ "overlay" "aufs" ];
+  #boot.kernelParams = [ "systemd.unified_cgroup_hierarchy=0" ];
+  #boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   # Bootloader LEGACY
   #boot.loader.grub.enable = true;
@@ -32,8 +34,9 @@
   nix.settings.auto-optimise-store = true;
 
   # Configure console keymap
-  console.keyMap = "es";
+  #console.keyMap = "es";
+  console.keyMap = "la-latin1";
 
   # State Veersion
-  system.stateVersion = "23.05";
+  system.stateVersion = "${xdnVersion}";
 }

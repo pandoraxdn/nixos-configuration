@@ -1,55 +1,61 @@
 {
-  description = "NixOS configuration by Rodrigo Xdn";
+  description = "Pandora Xdn NixOs configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    #hyprland.url = "github:hyprwm/Hyprland";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    #hyprland.url = "github:hyprwm/Hyprland";
+    #nur.url = github:nix-community/NUR;
+    #dde-nixos = {
+      #url = "github:linuxdeepin/dde-nixos";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
-    let
-      xdnUser = "najimi"; 
-      xdnHome = "/home/najimi";
-      xdnVersion= "23.05";
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      homeConfigurations.${xdnUser} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+  outputs = inputs@{ nixpkgs, home-manager, ... }:
+  let
+  	xdnUser     = "najimi"; 
+    xdnHome     = "/home/${xdnUser}";
+    xdnVersion  = "25.05";
+    xdnHost     = "dead-master";
+    system      = "x86_64-linux";
+    pkgs        = nixpkgs.legacyPackages.${system};
+  in
+  {
+  	nixosConfigurations = {
+      # Flake load by default
+      default = nixpkgs.lib.nixosSystem {
+        inherit system;
         modules = [
-          ./home-manager/home.nix
+          ./system/layout/configuration.nix
+        ];
+      };
+      # Flake load by najimi user
+      ${xdnUser} = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ({ 
+              _module.args = {
+                inherit xdnUser xdnHome xdnVersion xdnHost;
+              };
+          })
+          ./system/core/configuration.nix
+          home-manager.nixosModules.home-manager
           {
-            home = {
-              username = "${xdnUser}";
-              homeDirectory = "${xdnHome}";
-              stateVersion = "${xdnVersion}";
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.${xdnUser} = {
+                _module.args = { inherit xdnUser xdnHome xdnVersion xdnHost; };
+                imports = [ ./home-manager/home.nix ];
+              };
             };
           }
         ];
       };
-      nixosConfigurations = {
-        default = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./system/layout/configuration.nix
-          ];
-        };
-        ${xdnUser} = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./system/core/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${xdnUser} = import ./home-manager/home.nix;
-            }
-          ];
-        };
-      };
     };
+  };
 }

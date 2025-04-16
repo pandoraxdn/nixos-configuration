@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #!/bin/bash
 
-wallpaper="$HOME/Imágenes/wallpaper/104359432_p0.jpg"
+wallpaper="$HOME/Imágenes/wallpaper/1237092.jpg"
 
 
 case $1 in

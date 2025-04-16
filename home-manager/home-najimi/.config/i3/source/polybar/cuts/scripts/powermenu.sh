@@ -10,7 +10,7 @@ uptime=$(uptime | tr "," " " | cut -f6-8 -d" ")
 
 #rofi_command="rofi -theme $dir/powermenu.rasi"
 
-rofi_command="rofi -theme $dir/rounded-purple-simple.rasi"
+rofi_command="rofi -theme $dir/rounded-blue-simple.rasi"
 
 # Options
 shutdown=" Apagar"
